@@ -1,310 +1,209 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Portofolio — Web Developer & Mahasiswa</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#F4F6F8; --surface:#FFFFFF; --ink:#14213D; --muted:#55627A; --line:#D9DFE8;
-  --accent:#F2C14E; --accent-ink:#14213D; --green:#1F7A66; --chip:#E8EDF4;
-  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
-  --body:'Instrument Sans','Segoe UI',system-ui,sans-serif;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0F1626; --surface:#18223A; --ink:#EEF2F8; --muted:#A3AFC6; --line:#2B3856;
-    --accent:#F2C14E; --accent-ink:#14213D; --green:#4FC3A5; --chip:#223052; color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0F1626; --surface:#18223A; --ink:#EEF2F8; --muted:#A3AFC6; --line:#2B3856;
-  --accent:#F2C14E; --accent-ink:#14213D; --green:#4FC3A5; --chip:#223052; color-scheme:dark;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-
-/* nav */
-header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
-.logo{font-family:var(--display);font-weight:800;font-size:19px;text-decoration:none;letter-spacing:-.01em}
-.nav nav{display:flex;gap:22px;align-items:center;font-size:15px;font-weight:500}
-.nav nav a{text-decoration:none;color:var(--muted)}
-.nav nav a:hover{color:var(--ink)}
-.theme{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:14px;cursor:pointer}
-@media(max-width:640px){.nav nav a.hide-s{display:none}}
-
-/* hero */
-.hero{padding:84px 0 64px}
-.hero .hi{font-size:18px;color:var(--muted);margin:0 0 14px}
-.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(44px,9vw,104px);line-height:.98;letter-spacing:-.035em;margin:0 0 28px;max-width:14ch}
-.hero h1 .mark{background:linear-gradient(transparent 62%,var(--accent) 62% 92%,transparent 92%);padding:0 .06em}
-.hero p.lead{font-size:clamp(18px,2.2vw,21px);max-width:58ch;color:var(--muted);margin:0 0 32px}
-.cta{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:600;text-decoration:none;font-size:16px;border:1px solid var(--ink)}
-.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn:hover{transform:translateY(-1px)}
-.stack{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px}
-.stack span{background:var(--chip);padding:6px 14px;border-radius:999px;font-size:14.5px;font-weight:500}
-
-section{padding:72px 0}
-h2{font-family:var(--display);font-weight:800;font-size:clamp(30px,4.5vw,44px);letter-spacing:-.025em;line-height:1.1;margin:0 0 12px}
-.sub{color:var(--muted);max-width:60ch;margin:0 0 40px}
-
-/* projects */
-.proj{display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start}
-@media(max-width:820px){.proj{grid-template-columns:1fr}}
-.tabs{display:flex;flex-direction:column;gap:8px}
-@media(max-width:820px){.tabs{flex-direction:row;overflow-x:auto;padding-bottom:4px}.tabs button{min-width:220px}}
-.tabs button{text-align:left;background:transparent;border:1px solid var(--line);color:var(--ink);padding:16px 18px;border-radius:12px;cursor:pointer;font:inherit;transition:background .15s,border-color .15s}
-.tabs button b{display:block;font-family:var(--display);font-size:17px;line-height:1.25}
-.tabs button small{color:var(--muted);font-size:14px}
-.tabs button[aria-selected="true"]{background:var(--surface);border-color:var(--ink);box-shadow:5px 5px 0 var(--accent)}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.shot{height:220px;background:var(--chip);border-bottom:1px solid var(--line);padding:22px;display:flex;align-items:center;justify-content:center}
-.pbody{padding:28px}
-.pbody h3{font-family:var(--display);font-size:26px;line-height:1.2;margin:0 0 6px;letter-spacing:-.015em}
-.pbody .tech{color:var(--green);font-weight:600;font-size:15px;margin:0 0 16px}
-.pbody ul{margin:0;padding-left:20px}
-.pbody li{margin:0 0 10px}
-.pbody li::marker{color:var(--accent)}
-
-/* mockups */
-.mock{width:100%;max-width:420px;height:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 0 var(--line)}
-.mock .bar{display:flex;gap:5px;padding:8px 10px;border-bottom:1px solid var(--line)}
-.mock .bar i{width:8px;height:8px;border-radius:50%;background:var(--line)}
-.mock .c{flex:1;padding:12px;display:grid;gap:8px}
-.blk{background:var(--chip);border-radius:6px}
-.blk.a{background:var(--accent)}
-.blk.g{background:var(--green);opacity:.85}
-.m1 .c{grid-template-columns:1.2fr 1fr;grid-template-rows:1fr 1fr}
-.m1 .c .big{grid-row:span 2}
-.m2 .c{grid-template-columns:repeat(3,1fr);grid-template-rows:34px 1fr 1fr}
-.m2 .c .wide{grid-column:span 3}
-.m3 .c{grid-template-columns:60px 1fr 1fr;grid-template-rows:1fr 1fr}
-.m3 .c .side{grid-row:span 2}
-.m3 .c .chart{grid-column:span 2;display:flex;align-items:flex-end;gap:6px;padding:8px;background:var(--chip);border-radius:6px}
-.m3 .chart i{flex:1;background:var(--green);border-radius:3px 3px 0 0;opacity:.85}
-
-/* timeline */
-.tl{list-style:none;margin:0;padding:0;position:relative}
-.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
-.tl li{position:relative;padding:0 0 34px 38px}
-.tl li::before{content:"";position:absolute;left:0;top:7px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
-.tl .when{font-size:14px;font-weight:600;color:var(--green);margin:0}
-.tl h3{font-family:var(--display);font-size:21px;margin:0 0 4px;line-height:1.25}
-.tl p{margin:0;color:var(--muted);max-width:68ch}
-
-/* achievement */
-.award{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--ink);color:var(--bg);border-radius:20px;padding:36px}
-:root[data-theme="dark"] .award{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .award{background:var(--surface);color:var(--ink);border:1px solid var(--line)}}
-.award .badge{width:84px;height:84px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:30px}
-.award h3{font-family:var(--display);font-size:clamp(22px,3vw,30px);margin:0 0 6px;line-height:1.2}
-.award p{margin:0;opacity:.85;max-width:60ch}
-@media(max-width:560px){.award{grid-template-columns:1fr;padding:26px}}
-
-/* contact */
-.contact{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:44px 32px;text-align:center}
-.contact p{color:var(--muted);margin:0 auto 26px;max-width:50ch}
-.contact .cta{justify-content:center}
-footer{padding:36px 0 48px;color:var(--muted);font-size:14.5px;border-top:1px solid var(--line)}
-@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Puspa Sekar Agustin — Portofolio</title>
+    <meta name="description"
+        content="Portfolio Puspa Sekar Agustin — Mahasiswa Teknik Informatika & Web Developer. HTML, CSS, JavaScript, PHP Laravel, Python, MySQL.">
+    <meta name="author" content="Puspa Sekar Agustin">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<header class="nav">
-  <div class="wrap">
-    <a class="logo" href="#atas" id="logoNama">Portofolio</a>
-    <nav aria-label="Navigasi utama">
-      <a class="hide-s" href="#proyek">Proyek</a>
-      <a class="hide-s" href="#organisasi">Organisasi</a>
-      <a class="hide-s" href="#pencapaian">Pencapaian</a>
-      <a href="#kontak">Kontak</a>
-      <button class="theme" id="themeBtn" type="button" aria-label="Ganti tema">Tema</button>
-    </nav>
-  </div>
-</header>
 
-<main id="atas">
-  <div class="wrap">
-    <div class="hero">
-      <p class="hi">Halo, saya</p>
-      <h1><span id="heroNama" class="mark">Puspa Sekar Agustin</span></h1>
-      <p class="lead">Mahasiswa Teknik Informatika yang memiliki ketertarikan pada web development, digital media, dan desain visual. Mampu bekerja secara individu maupun dalam tim, serta memiliki kemauan untuk terus belajar dan mengembangkan 
-kemampuan melalui pengalaman profesional. </p>
-      <div class="cta">
-        <a class="btn primary" href="#proyek">Lihat proyek</a>
-        <a class="btn ghost" href="#kontak">Hubungi saya</a>
-      </div>
-      <div class="stack" aria-label="Keahlian teknis">
-        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span><span>Laravel</span><span>Python</span><span>MySQL</span><span>Desain konten &amp; poster</span>
-      </div>
-    </div>
-  </div>
-
-  <section id="proyek">
-    <div class="wrap">
-      <h2>Proyek</h2>
-      <p class="sub">Tiga proyek yang saya kerjakan pada 2026. Pilih salah satu untuk melihat detailnya.</p>
-      <div class="proj">
-        <div class="tabs" role="tablist" aria-label="Daftar proyek" id="tabs"></div>
-        <div class="panel" role="tabpanel" id="panel" aria-live="polite"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="organisasi">
-    <div class="wrap">
-      <h2>Pengalaman &amp; organisasi</h2>
-      <p class="sub">Kegiatan di luar kelas yang melatih kerja sama tim, komunikasi visual, dan literasi digital.</p>
-      <ol class="tl" id="timeline"></ol>
-    </div>
-  </section>
-
-  <section id="pencapaian">
-    <div class="wrap">
-      <h2>Pencapaian</h2>
-      <p class="sub">&nbsp;</p>
-      <div class="award">
-        <div class="badge" aria-hidden="true">B4</div>
-        <div>
-          <h3>Awardee BSI Scholarship Inspirasi Batch 4</h3>
-          <p>Terpilih sebagai salah satu penerima Beasiswa BSI Inspirasi Batch 4 dan mengikuti program pengembangan diri bagi mahasiswa penerima beasiswa. 2024 – sekarang.</p>
+    <!-- NAV -->
+    <header class="nav" id="atas">
+        <div class="wrap">
+            <a class="logo" href="#atas">Puspa Sekar Agustin</a>
+            <nav id="navMenu" aria-label="Navigasi utama">
+                <a class="hide-s" href="#biodata">Biodata</a>
+                <a class="hide-s" href="#skill">Kemampuan</a>
+                <a class="hide-s" href="#bahasa">Bahasa</a>
+                <a class="hide-s" href="#projek">Projek</a>
+                <a class="hide-s" href="#ai-tools">AI</a>
+                <a href="#kontak">Kontak</a>
+                <button class="theme" id="themeBtn" type="button" aria-label="Ganti tema">🌙 Tema</button>
+            </nav>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Buka menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <section id="kontak">
-    <div class="wrap">
-      <div class="contact">
-        <h2>Mari berkolaborasi</h2>
-        <p>Punya proyek website, sistem informasi, atau kebutuhan desain publikasi? Kirim pesan, saya senang berdiskusi.</p>
-        <div class="cta" id="contactLinks"></div>
-      </div>
-    </div>
-  </section>
-</main>
+    <main>
 
-<footer>
-  <div class="wrap"><span id="foot"></span></div>
-</footer>
+        <!-- HERO -->
+        <div class="wrap">
+            <div class="hero">
+                <p class="hi">Halo, saya</p>
+                <h1><span class="mark">Puspa Sekar Agustin</span></h1>
+                <p class="lead">Mahasiswa Teknik Informatika yang memiliki ketertarikan pada web development, digital
+                    media, dan desain visual. Mampu bekerja secara individu maupun dalam tim, serta memiliki kemauan
+                    untuk terus belajar dan mengembangkan kemampuan melalui pengalaman profesional.</p>
+                <div class="cta">
+                    <a class="btn primary" href="#projek">Lihat proyek</a>
+                    <a class="btn ghost" href="#kontak">Hubungi saya</a>
+                </div>
+                <div class="stack" aria-label="Keahlian teknis">
+                    <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                    <span>PHP</span><span>Laravel</span><span>Python</span>
+                    <span>MySQL</span><span>Desain Visual</span>
+                </div>
+            </div>
+        </div>
 
-<script>
-/* ====== UBAH DATA PRIBADI DI SINI ====== */
-const PROFIL = {
-  nama: "Puspa Sekar Agustin",
-  email: "puspasekar01@gmail.com",
-  linkedin: "https://www.linkedin.com/in/puspa-sekar-agustin",
-  github: "https://github.com/pus-skr",
-  instagram: ""
-};
-/* ======================================= */
+        <!-- BIODATA -->
+        <section id="biodata">
+            <div class="wrap">
+                <h2>Biodata</h2>
+                <p class="sub">Profil singkat serta latar belakang akademis dan profesional.</p>
+                <div class="bio-grid">
 
-const proyek = [
-  {
-    judul: "Website Informasi “Mengenal Kembang Tahu Panambangan”",
-    tab: "Website Kembang Tahu",
-    tahun: "2026",
-    tech: "HTML, CSS, dan JavaScript",
-    mock: "m1",
-    poin: [
-      "Merancang dan mengembangkan website informasi untuk memperkenalkan kembang tahu sebagai salah satu produk unggulan Desa Panambangan.",
-      "Membuat struktur halaman yang mencakup informasi produk, sejarah, proses pembuatan, UMKM, galeri, lokasi, dan informasi terkait desa.",
-      "Mengembangkan tampilan website yang responsif agar dapat diakses dengan baik melalui perangkat desktop maupun mobile."
-    ]
-  },
-  {
-    judul: "Travel Booking Management System",
-    tab: "Travel Booking System",
-    tahun: "2026",
-    tech: "PHP (Laravel) dan MySQL",
-    mock: "m2",
-    poin: [
-      "Membangun platform manajemen pemesanan travel menggunakan Laravel, PHP, dan MySQL, mencakup modul trip, destinasi, itinerary, booking, dan laporan.",
-      "Mengembangkan fitur berdasarkan 3 role pengguna: admin, user, dan owner.",
-      "Merancang fitur dan alur sistem berdasarkan kebutuhan pengguna dalam proses pemesanan perjalanan."
-    ]
-  },
-  {
-    judul: "Sistem Manajemen Apotek",
-    tab: "Sistem Manajemen Apotek",
-    tahun: "2026",
-    tech: "Python, MySQL, HTML, CSS, dan JavaScript",
-    mock: "m3",
-    poin: [
-      "Membangun sistem manajemen apotek dengan beberapa peran pengguna: Admin, Staff, dan Manager.",
-      "Mengimplementasikan modul inventaris obat, transaksi penjualan, manajemen pengguna, dan pelaporan.",
-      "Mengembangkan dashboard analitik untuk memvisualisasikan data operasional dan penjualan.",
-      "Merancang struktur database relasional untuk mendukung pelacakan inventaris dan pengelolaan transaksi yang akurat."
-    ]
-  }
-];
+                    <div class="card">
+                        <div class="bio-header">
+                            <h3>Puspa Sekar Agustin</h3>
+                            <p>Mahasiswi Teknik Informatika </p>
+                        </div>
+                        <div class="bio-rows">
+                            <div class="bio-row"><span class="lbl">Nama</span><span class="val">Puspa Sekar
+                                    Agustin</span></div>
+                            <div class="bio-row"><span class="lbl">Pendidikan</span><span class="val">S1 Teknik
+                                    Informatika</span></div>
+                            <div class="bio-row"><span class="lbl">Fokus</span><span class="val">Web Development &amp;
+                                    Desain Visual</span></div>
+                            <div class="bio-row"><span class="lbl">Email</span><span class="val"><a
+                                        href="mailto:puspasekar01@gmail.com"
+                                        style="color:inherit;text-decoration:none;">puspasekar01@gmail.com</a></span>
+                            </div>
+                            <div class="bio-row"><span class="lbl">GitHub</span><span class="val"><a
+                                        href="https://github.com/pus-skr" target="_blank" rel="noopener"
+                                        style="color:var(--green);font-weight:700;">github.com/pus-skr</a></span></div>
+                        </div>
+                    </div>
 
-const mocks = {
-  m1: `<div class="mock m1"><div class="bar"><i></i><i></i><i></i></div><div class="c"><div class="blk a big"></div><div class="blk"></div><div class="blk g"></div></div></div>`,
-  m2: `<div class="mock m2"><div class="bar"><i></i><i></i><i></i></div><div class="c"><div class="blk a wide"></div><div class="blk"></div><div class="blk"></div><div class="blk g"></div><div class="blk"></div><div class="blk g"></div><div class="blk"></div></div></div>`,
-  m3: `<div class="mock m3"><div class="bar"><i></i><i></i><i></i></div><div class="c"><div class="blk a side"></div><div class="blk"></div><div class="blk"></div><div class="chart"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i><i style="height:95%"></i></div></div></div>`
-};
+                    <div class="card">
+                        <h3 style="font-family:var(--display);font-size:19px;margin-bottom:12px;">Tentang Saya</h3>
+                        <p class="about-text">
+                            Saya adalah mahasiswi Teknik Informatika yang memiliki ketertarikan pada web development,
+                            digital media, dan desain visual. Terbiasa membangun antarmuka web, mengelola basis data,
+                            serta mampu bekerja secara individu maupun dalam tim dengan kemauan belajar yang tinggi.
+                        </p>
+                    </div>
 
-const organisasi = [
-  {when:"2026", judul:"Kuliah Kerja Mahasiswa (KKM) — Publikasi & Dokumentasi (PDD)", teks:"Mendokumentasikan kegiatan dan membuat konten publikasi, termasuk desain feed Instagram, sepanjang program pengabdian masyarakat selama 35 hari. Berkolaborasi dengan anggota tim dalam pelaksanaan program kerja dan kebutuhan dokumentasi."},
-  {when:"2025", judul:"Panitia Hari Ulang Tahun UKM — Staf Publikasi & Dokumentasi (PDD)", teks:"Merancang poster promosi untuk mendukung kampanye publisitas acara dan menjaga konsistensi branding serta komunikasi visual bersama panitia."},
-  {when:"2024 – 2025", judul:"UKM Computer Education — Anggota", teks:"Mengikuti workshop dan pelatihan teknologi yang mencakup pemrograman, alat produktivitas digital, dan topik IT lainnya. Meningkatkan literasi digital dan kemampuan pemecahan masalah melalui diskusi dan program pembelajaran seputar teknologi."},
-  {when:"2024", judul:"Generasi Bebas Plastik (Indorelawan × Novo Club by ParagonCorp) — Volunteer", teks:"Berpartisipasi dalam kampanye pengurangan sampah plastik dan pelestarian lingkungan, merancang konten visual untuk kampanye di media sosial, serta mengunjungi bank sampah untuk mempelajari pengelolaan sampah berbasis masyarakat."}
-];
+                </div>
+            </div>
+        </section>
 
-/* render proyek */
-const tabs = document.getElementById('tabs'), panel = document.getElementById('panel');
-function show(i){
-  const p = proyek[i];
-  [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected', j===i));
-  panel.innerHTML = `<div class="shot">${mocks[p.mock]}</div>
-    <div class="pbody"><h3>${p.judul}</h3><p class="tech">${p.tech} · ${p.tahun}</p>
-    <ul>${p.poin.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
-}
-proyek.forEach((p,i)=>{
-  const b = document.createElement('button');
-  b.type='button'; b.setAttribute('role','tab');
-  b.innerHTML = `<b>${p.tab}</b><small>${p.tech}</small>`;
-  b.onclick=()=>show(i);
-  tabs.appendChild(b);
-});
-show(0);
+        <!-- KEMAMPUAN -->
+        <section id="skill">
+            <div class="wrap">
+                <h2>Kemampuan &amp; Skill</h2>
+                <p class="sub">Kompetensi teknis dan desain yang terus diasah.</p>
+                <div class="skill-grid">
+                    <div class="card skill-item">
+                        <b>Web Development</b>
+                        <small>Pengembangan antarmuka web responsif &amp; interaktif</small>
+                    </div>
+                    <div class="card skill-item">
+                        <b>Database Management</b>
+                        <small>Perancangan basis data relasional &amp; query data</small>
+                    </div>
+                    <div class="card skill-item">
+                        <b>Desain Visual &amp; Media</b>
+                        <small>Komunikasi visual, materi publikasi, &amp; branding</small>
+                    </div>
+                    <div class="card skill-item">
+                        <b>Adaptif</b>
+                        <small>Memiliki fleksibilitas tinggi dalam menghadapi tantangan baru</small>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-/* render timeline */
-document.getElementById('timeline').innerHTML = organisasi.map(o=>
-  `<li><p class="when">${o.when}</p><h3>${o.judul}</h3><p>${o.teks}</p></li>`).join('');
+        <!-- BAHASA PEMROGRAMAN -->
+        <section id="bahasa">
+            <div class="wrap">
+                <h2>Bahasa Pemrograman</h2>
+                <p class="sub">Bahasa dan teknologi yang telah dipelajari serta digunakan dalam projek.</p>
+                <div class="lang-grid">
+                    <div class="card lang-item">
+                        <b>HTML5</b>
+                    </div>
+                    <div class="card lang-item">
+                        <b>CSS3</b>
+                    </div>
+                    <div class="card lang-item">
+                        <b>JavaScript</b>
+                    </div>
+                    <div class="card lang-item">
+                        <b>PHP (Laravel)</b>
+                    </div>
+                    <div class="card lang-item">
+                        <b>Python</b>
+                    </div>
+                    <div class="card lang-item">
+                        <b>MySQL</b>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-/* profil */
-document.getElementById('heroNama').textContent = PROFIL.nama;
-document.getElementById('logoNama').textContent = PROFIL.nama;
-document.title = `${PROFIL.nama} — Portofolio`;
-document.getElementById('foot').textContent = `© 2026 ${PROFIL.nama}`;
-const links = [];
-if(PROFIL.email) links.push(`<a class="btn primary" href="mailto:${PROFIL.email}">Kirim email</a>`);
-if(PROFIL.linkedin) links.push(`<a class="btn ghost" href="${PROFIL.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`);
-if(PROFIL.github) links.push(`<a class="btn ghost" href="${PROFIL.github}" target="_blank" rel="noopener">GitHub</a>`);
-if(PROFIL.instagram) links.push(`<a class="btn ghost" href="${PROFIL.instagram}" target="_blank" rel="noopener">Instagram</a>`);
-document.getElementById('contactLinks').innerHTML = links.join('');
+        <!-- PROJEK -->
+        <section id="projek">
+            <div class="wrap">
+                <h2>Projek</h2>
+                <p class="sub">Tiga proyek yang dikerjakan pada 2026. Pilih salah satu untuk melihat detailnya.</p>
+                <div class="proj">
+                    <div class="tabs" role="tablist" aria-label="Daftar proyek" id="proyekTabs"></div>
+                    <div class="panel" role="tabpanel" id="proyekPanel" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
 
-/* tema */
-const root = document.documentElement;
-document.getElementById('themeBtn').onclick = ()=>{
-  const dark = root.getAttribute('data-theme')==='dark' ||
-    (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
-  root.setAttribute('data-theme', dark ? 'light' : 'dark');
-};
-</script>
+        <!-- AI TOOLS -->
+        <section id="ai-tools">
+            <div class="wrap">
+                <h2>AI yang Sering Digunakan</h2>
+                <p class="sub">Kecerdasan buatan yang sering dimanfaatkan untuk mendukung riset dan produktivitas.</p>
+                <div class="ai-grid">
+                    <div class="card ai-item"><b>ChatGPT</b></div>
+                    <div class="card ai-item"><b>Claude</b></div>
+                    <div class="card ai-item"><b>Google Gemini</b></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KONTAK -->
+        <section id="kontak">
+            <div class="wrap">
+                <div class="contact">
+                    <h2>Mari berkolaborasi</h2>
+                    <p>Punya proyek website, sistem informasi, atau kebutuhan desain publikasi? Kirim pesan, saya senang
+                        berdiskusi.</p>
+                    <div class="cta" id="contactLinks"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span id="foot"></span>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast"><span id="toastIco">✨</span> <span id="toastMsg">Berhasil</span></div>
+    <button id="backTop" class="back-top" type="button" aria-label="Kembali ke atas">↑</button>
+
+    <script src="js/main.js"></script>
 </body>
+
 </html>
