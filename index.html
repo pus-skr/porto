@@ -203,6 +203,20 @@
     <div id="toast" class="toast"><span id="toastIco">✨</span> <span id="toastMsg">Berhasil</span></div>
     <button id="backTop" class="back-top" type="button" aria-label="Kembali ke atas">↑</button>
 
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau Screenshot Projek" hidden>
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+        <div class="lightbox-content">
+            <div class="lightbox-header">
+                <span id="lightboxTitle">Judul Projek</span>
+                <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Tutup pratinjau">✕</button>
+            </div>
+            <div class="lightbox-body">
+                <img id="lightboxImg" src="" alt="Screenshot Projek">
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
 </body>
 

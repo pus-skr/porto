@@ -12,50 +12,80 @@ const PROFIL = {
 /* ─── Data Projek ─── */
 const PROYEK = [
   {
-    tab:   'Website Kembang Tahu',
-    judul: 'Website Informasi "Mengenal Kembang Tahu Panambangan"',
-    tech:  'HTML, CSS, dan JavaScript',
-    tahun: '2026',
-    mock:  'm1',
-    poin: [
-      'Merancang dan mengembangkan website informasi untuk memperkenalkan kembang tahu sebagai salah satu produk unggulan Desa Panambangan.',
-      'Membuat struktur halaman yang mencakup informasi produk, sejarah, proses pembuatan, UMKM, galeri, lokasi, dan informasi terkait desa.',
-      'Mengembangkan tampilan website yang responsif agar dapat diakses dengan baik melalui perangkat desktop maupun mobile.',
-    ]
-  },
-  {
+    id:    'travel',
     tab:   'Travel Booking System',
-    judul: 'Travel Booking Management System',
+    judul: 'ExploreNusa — Travel Booking System',
     tech:  'PHP (Laravel) dan MySQL',
     tahun: '2026',
-    mock:  'm2',
+    img:   'img/projek-travel.png',
     poin: [
-      'Membangun platform manajemen pemesanan travel menggunakan Laravel, PHP, MySQL, mencakup modul trip, destinasi, itinerary, booking, dan laporan.',
-      'Mengembangkan fitur berdasarkan 3 role pengguna seperti admin, user, dan owner.',
-      'Merancang fitur dan alur sistem berdasarkan kebutuhan pengguna dalam proses pemesanan perjalanan.',
+      'Membangun platform manajemen dan reservasi perjalanan wisata nusantara berbasis web menggunakan Laravel, PHP, dan MySQL.',
+      'Menyediakan fitur pencarian destinasi, pemilihan tanggal keberangkatan, serta jumlah penumpang untuk kemudahan booking perjalanan.',
+      'Mengembangkan sistem role pengguna bertingkat (Admin, User, dan Owner) yang mencakup modul trip, destinasi wisata, jadwal itinerary, dan rekapitulasi booking.',
+      'Merancang antarmuka pengguna yang modern, imersif, dan responsif dengan pengalaman eksplorasi destinasi yang intuitif.'
     ]
   },
   {
+    id:    'kembang-tahu',
+    tab:   'Website Kembang Tahu',
+    judul: 'Website Informasi "Kembang Tahu Asli Panambangan"',
+    tech:  'HTML, CSS, dan JavaScript',
+    tahun: '2026',
+    img:   'img/projek-kembang-tahu.png',
+    link:  'https://kembangtahu-panambangan.site',
+    poin: [
+      'Merancang dan mengembangkan website dokumentasi digital dan arsip sejarah kuliner tradisional khas Desa Panambangan yang telah ada sejak 1960-an.',
+      'Menyediakan struktur konten informatif mencakup profil produk, sejarah, tahapan proses pembuatan, direktori UMKM terdaftar, galeri dokumentasi, hingga peta lokasi desa.',
+      'Mengembangkan tampilan antarmuka yang elegan, berkarakter, dan ramah pengguna dengan optimasi responsif di berbagai ukuran layar desktop maupun ponsel.'
+    ]
+  },
+  {
+    id:    'apotek',
     tab:   'Sistem Manajemen Apotek',
-    judul: 'Sistem Manajemen Apotek',
+    judul: 'My Apotek — Sistem Manajemen & Dashboard Apotek',
     tech:  'Python, MySQL, HTML, CSS, dan JavaScript',
     tahun: '2026',
-    mock:  'm3',
+    img:   'img/projek-apotek.png',
     poin: [
-      'Membangun sistem manajemen apotek dengan beberapa peran pengguna: Admin, Staff, dan Manager.',
-      'Mengimplementasikan modul inventaris obat, transaksi penjualan, manajemen pengguna, dan pelaporan.',
-      'Mengembangkan dashboard analitik untuk memvisualisasikan data operasional dan penjualan.',
-      'Merancang struktur database relasional untuk mendukung pelacakan inventaris dan pengelolaan transaksi yang akurat.',
+      'Membangun sistem informasi operasional apotek berbasis web dengan pembagian peran pengguna (Admin, Staff, dan Manager).',
+      'Mengembangkan dashboard analitik interaktif yang menampilkan metrik kunci: total jenis obat, total stok barang, total transaksi, total pendapatan, grafik obat terlaris, serta tren penjualan bulanan.',
+      'Mengimplementasikan modul master data obat, transaksi kasir real-time, manajemen pengguna, riwayat penjualan, dan pelaporan keuangan.',
+      'Merancang skema basis data MySQL relasional yang aman dan terstruktur demi ketepatan pencatatan inventaris dan transaksi.'
     ]
   }
 ];
 
-/* ─── Mock HTML  ─── */
-const MOCKS = {
-  m1: `<div class="mock m1"><div class="bar"><i></i><i></i><i></i></div><div class="c"><div class="blk a big"></div><div class="blk"></div><div class="blk g"></div></div></div>`,
-  m2: `<div class="mock m2"><div class="bar"><i></i><i></i><i></i></div><div class="c"><div class="blk a wide"></div><div class="blk"></div><div class="blk"></div><div class="blk g"></div><div class="blk"></div><div class="blk g"></div><div class="blk"></div></div></div>`,
-  m3: `<div class="mock m3"><div class="bar"><i></i><i></i><i></i></div><div class="c"><div class="blk a side"></div><div class="blk"></div><div class="blk"></div><div class="chart"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i><i style="height:95%"></i></div></div></div>`,
-};
+/* ================================================================
+   LIGHTBOX MODAL
+   ================================================================ */
+const lightbox         = document.getElementById('lightbox');
+const lightboxImg      = document.getElementById('lightboxImg');
+const lightboxTitle    = document.getElementById('lightboxTitle');
+const lightboxClose    = document.getElementById('lightboxClose');
+const lightboxBackdrop = document.getElementById('lightboxBackdrop');
+
+function openLightbox(src, title) {
+  if (!lightbox || !lightboxImg) return;
+  lightboxImg.src = src;
+  lightboxImg.alt = title;
+  if (lightboxTitle) lightboxTitle.textContent = title;
+  lightbox.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  if (!lightbox) return;
+  lightbox.setAttribute('hidden', '');
+  document.body.style.overflow = '';
+}
+
+lightboxClose?.addEventListener('click', closeLightbox);
+lightboxBackdrop?.addEventListener('click', closeLightbox);
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox && !lightbox.hasAttribute('hidden')) {
+    closeLightbox();
+  }
+});
 
 /* ================================================================
    RENDER PROJEK 
@@ -67,12 +97,52 @@ function tampilProyek(i) {
   const p = PROYEK[i];
   [...tabsEl.children].forEach((b, j) => b.setAttribute('aria-selected', j === i));
   panelEl.innerHTML = `
-    <div class="shot">${MOCKS[p.mock]}</div>
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots" aria-hidden="true">
+          <span class="b-dot red"></span>
+          <span class="b-dot yellow"></span>
+          <span class="b-dot green"></span>
+        </div>
+        <button class="expand-btn" type="button" aria-label="Perbesar tangkapan layar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+          <span>Perbesar</span>
+        </button>
+      </div>
+      <div class="shot-preview" role="button" tabindex="0" aria-label="Lihat ukuran penuh screenshot ${p.judul}">
+        <img src="${p.img}" alt="Screenshot ${p.judul}" class="shot-img" />
+        <div class="shot-overlay">
+          <span class="overlay-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            Klik untuk perbesar gambar
+          </span>
+        </div>
+      </div>
+    </div>
     <div class="pbody">
-      <h3>${p.judul}</h3>
-      <p class="tech">${p.tech} · ${p.tahun}</p>
+      <div class="pbody-head">
+        <div>
+          <h3>${p.judul}</h3>
+          <p class="tech">${p.tech} · ${p.tahun}</p>
+        </div>
+        ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener" class="btn-visit">Kunjungi Web ↗</a>` : ''}
+      </div>
       <ul>${p.poin.map(x => `<li>${x}</li>`).join('')}</ul>
     </div>`;
+
+  const previewEl = panelEl.querySelector('.shot-preview');
+  const expandBtn = panelEl.querySelector('.expand-btn');
+  previewEl?.addEventListener('click', () => openLightbox(p.img, p.judul));
+  previewEl?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openLightbox(p.img, p.judul);
+    }
+  });
+  expandBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openLightbox(p.img, p.judul);
+  });
 }
 
 PROYEK.forEach((p, i) => {
@@ -80,7 +150,14 @@ PROYEK.forEach((p, i) => {
   btn.type = 'button';
   btn.setAttribute('role', 'tab');
   btn.setAttribute('aria-selected', 'false');
-  btn.innerHTML = `<b>${p.tab}</b><small>${p.tech}</small>`;
+  btn.innerHTML = `
+    <div class="tab-btn-content">
+      <img src="${p.img}" alt="" class="tab-thumb" loading="lazy" />
+      <div class="tab-meta">
+        <b>${p.tab}</b>
+        <small>${p.tech}</small>
+      </div>
+    </div>`;
   btn.addEventListener('click', () => tampilProyek(i));
   tabsEl.appendChild(btn);
 });
